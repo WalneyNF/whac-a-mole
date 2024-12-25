@@ -1,86 +1,124 @@
-let currMoleTile; // Armazena a tile (quadrado) onde o mole (toupeira) está atualmente
-let currPlantTile; // Armazena a tile onde a planta está atualmente
+const board = document.getElementById("board"); // Referência ao tabuleiro
+const scoreElement = document.getElementById("score"); // Referência ao elemento de pontuação
+const restartButton = document.getElementById("restartButton"); // Referência ao botão de reiniciar
+let currMoleTile; // Tile atual do mole
+let currPlantTile; // Tile atual da planta
 let score = 0; // Pontuação do jogador
-let gameOver = false; // Indica se o jogo acabou
+let gameOver = false; // Estado do jogo
+let moleInterval; // Intervalo para o mole
+let plantInterval; // Intervalo para a planta
 
-// Quando a janela carregar, chama a função setGame para configurar o jogo
-window.onload = function() {
+// Inicia o jogo quando a página carrega
+window.onload = function () {
     setGame();
-}
+};
 
+// Configura o jogo
 function setGame() {
-    // Configura o grid no HTML
-    for (let i = 0; i < 9; i++) { // i vai de 0 a 8 (9 tiles)
-        // Cria um div para cada tile com um ID único (0 a 8)
-        let tile = document.createElement("div");
+    // Cria as tiles do tabuleiro
+    for (let i = 0; i < 9; i++) {
+        const tile = document.createElement("div");
         tile.id = i.toString();
-        tile.addEventListener("click", selectTile); // Adiciona um evento de clique para cada tile
-        document.getElementById("board").appendChild(tile); // Adiciona a tile ao tabuleiro
+        tile.classList.add("tile");
+        tile.addEventListener("click", selectTile);
+        board.appendChild(tile);
     }
-    // Configura um intervalo para chamar a função setMole a cada 1 segundo (1000 milissegundos)
-    setInterval(setMole, 1000);
-    // Configura um intervalo para chamar a função setPlant a cada 2 segundos (2000 milissegundos)
-    setInterval(setPlant, 2000);
+
+    // Inicia os intervalos para o mole e a planta
+    moleInterval = setInterval(setMole, 1000); // Mole aparece a cada 1 segundo
+    plantInterval = setInterval(setPlant, 2000); // Planta aparece a cada 2 segundos
+
+    // Adiciona o evento de clique ao botão de reiniciar
+    restartButton.addEventListener("click", restartGame);
 }
 
+// Gera uma tile aleatória
 function getRandomTile() {
-    // Gera um número aleatório entre 0 e 8 para selecionar uma tile aleatória
-    let num = Math.floor(Math.random() * 9);
-    return num.toString();
+    return Math.floor(Math.random() * 9).toString();
 }
 
+// Adiciona o mole a uma tile aleatória
 function setMole() {
-    if (gameOver) {
-        return; // Se o jogo acabou, não faz nada
-    }
+    if (gameOver) return;
+
+    // Remove o mole da tile atual, se existir
     if (currMoleTile) {
-        currMoleTile.innerHTML = ""; // Limpa a tile atual do mole, se houver
+        currMoleTile.innerHTML = "";
     }
-    // Cria uma imagem para o mole e define a fonte da imagem
-    let mole = document.createElement("img");
+
+    // Gera uma nova tile aleatória
+    let num = getRandomTile();
+
+    // Verifica se a tile já contém a planta
+    if (currPlantTile && currPlantTile.id === num) {
+        return; // Tenta novamente
+    }
+
+    // Adiciona o mole à nova tile
+    currMoleTile = document.getElementById(num);
+    const mole = document.createElement("img");
     mole.src = "./monty-mole.png";
-
-    // Obtém uma tile aleatória para colocar o mole
-    let num = getRandomTile();
-    if (currPlantTile && currPlantTile.id == num) {
-        return; // Se a tile aleatória for a mesma da planta, tenta novamente
-    }
-    currMoleTile = document.getElementById(num); // Define a tile atual do mole
-    currMoleTile.appendChild(mole); // Adiciona o mole à tile
+    mole.classList.add("mole");
+    currMoleTile.appendChild(mole);
 }
 
+// Adiciona a planta a uma tile aleatória
 function setPlant() {
-    if (gameOver) {
-        return; // Se o jogo acabou, não faz nada
-    }
-    if (currPlantTile) {
-        currPlantTile.innerHTML = ""; // Limpa a tile atual da planta, se houver
-    }
-    // Cria uma imagem para a planta e define a fonte da imagem
-    let plant = document.createElement("img");
-    plant.src = "./piranha-plant.png";
+    if (gameOver) return;
 
-    // Obtém uma tile aleatória para colocar a planta
-    let num = getRandomTile();
-    if (currMoleTile && currMoleTile.id == num) {
-        return; // Se a tile aleatória for a mesma do mole, tenta novamente
+    // Remove a planta da tile atual, se existir
+    if (currPlantTile) {
+        currPlantTile.innerHTML = "";
     }
-    currPlantTile = document.getElementById(num); // Define a tile atual da planta
-    currPlantTile.appendChild(plant); // Adiciona a planta à tile
+
+    // Gera uma nova tile aleatória
+    let num = getRandomTile();
+
+    // Verifica se a tile já contém o mole
+    if (currMoleTile && currMoleTile.id === num) {
+        return; // Tenta novamente
+    }
+
+    // Adiciona a planta à nova tile
+    currPlantTile = document.getElementById(num);
+    const plant = document.createElement("img");
+    plant.src = "./piranha-plant.png";
+    plant.classList.add("plant");
+    currPlantTile.appendChild(plant);
 }
 
+// Lida com o clique em uma tile
 function selectTile() {
-    if (gameOver) {
-        return; // Se o jogo acabou, não faz nada
+    if (gameOver) return;
+
+    // Verifica se o jogador clicou no mole
+    if (this === currMoleTile) {
+        score += 10; // Aumenta a pontuação
+        scoreElement.innerText = score.toString(); // Atualiza o placar
+        this.innerHTML = ""; // Remove o mole da tile
+        currMoleTile = null; // Reseta a tile atual do mole
     }
-    // Verifica se a tile clicada é a do mole
-    if (this == currMoleTile) {
-        score += 10; // Aumenta a pontuação em 10
-        document.getElementById("score").innerText = score.toString(); // Atualiza o placar no HTML
+    // Verifica se o jogador clicou na planta
+    else if (this === currPlantTile) {
+        scoreElement.innerText = `GAME OVER: ${score}`; // Exibe a pontuação final
+        gameOver = true; // Encerra o jogo
+        clearInterval(moleInterval); // Para o intervalo do mole
+        clearInterval(plantInterval); // Para o intervalo da planta
     }
-    // Verifica se a tile clicada é a da planta
-    else if (this == currPlantTile) {
-        document.getElementById("score").innerText = "GAME OVER: " + score.toString(); // Exibe "GAME OVER" e a pontuação final
-        gameOver = true; // Define o jogo como encerrado
-    }
+}
+
+// Reinicia o jogo
+function restartGame() {
+    // Reseta as variáveis
+    score = 0;
+    gameOver = false;
+    currMoleTile = null;
+    currPlantTile = null;
+
+    // Limpa o tabuleiro
+    board.innerHTML = "";
+
+    // Reinicia o jogo
+    setGame();
+    scoreElement.innerText = "0"; // Reseta o placar
 }
