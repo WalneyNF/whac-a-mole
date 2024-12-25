@@ -1,46 +1,44 @@
-WHAC A MOLE (topeira)
+Whac a Mole 🎮
+Tutorial no YouTube
+Demonstração
 
-Tutorial de Codificação: https://youtu.be/ej8SatOj3V4
-Demonstração: https://imkennyyip.github.io/whac-a-mole/
-Fork: https://github.com/WalneyNF/whac-a-mole
+Bem-vindo ao repositório do jogo Whac a Mole! Este é um projeto divertido e educativo onde você aprenderá a criar um jogo clássico de "acertar a toupeira" usando HTML, CSS e JavaScript. O jogo tem um tema inspirado no Mario, tornando-o ainda mais envolvente.
 
-Neste tutorial, você aprenderá a criar o jogo "Whac a Mole" usando HTML, CSS e JavaScript. Especificamente, você aprenderá a codificar o jogo utilizando o elemento <canvas> do HTML5.
+Sobre o Projeto
+Neste tutorial, você aprenderá:
 
-Ao criar este jogo temático do Mario, você aprenderá como usar JavaScript para configurar o tabuleiro do jogo editando elementos do DOM, adicionar manipuladores de clique para "acertar" a toupeira e fazer com que a toupeira e a planta piranha apareçam aleatoriamente.
+✅ Como configurar o tabuleiro do jogo usando HTML e CSS.
 
-whac-a-mole-sample
+✅ Como manipular elementos do DOM com JavaScript.
 
-O Que Você Vai Aprender:
-Configuração do Tabuleiro:
+✅ Como adicionar eventos de clique para interagir com os elementos do jogo.
 
-Como criar e estilizar o tabuleiro do jogo usando HTML e CSS.
+✅ Como fazer a toupeira e a planta piranha aparecerem aleatoriamente.
 
-Manipulação do DOM com JavaScript:
+✅ Como gerenciar a pontuação e o estado do jogo (vitória ou derrota).
 
-Como adicionar e remover elementos dinamicamente no tabuleiro.
+Demonstração
+Captura de Tela do Jogo
 
-Eventos de Clique:
-
-Como adicionar eventos de clique para interagir com os elementos do jogo.
-
-Lógica do Jogo:
-
-Como fazer a toupeira e a planta piranha aparecerem aleatoriamente no tabuleiro.
-
-Como gerenciar a pontuação e o estado do jogo (vitória ou derrota).
-
-Tema do Mario:
-
-Como aplicar um tema visual inspirado no Mario para tornar o jogo mais divertido e atraente.
-
-Como Usar:
+Como Jogar
 Clone ou faça o download deste repositório.
 
-Abra o arquivo index.html no seu navegador para jogar.
+Abra o arquivo index.html no seu navegador.
 
-Siga o tutorial no YouTube para entender cada parte do código e criar o jogo do zero.
+Clique na toupeira para ganhar pontos.
 
-Recursos Utilizados:
+Cuidado com a planta piranha! Se você clicar nela, o jogo acaba.
+
+Use o botão "Reiniciar Jogo" para começar novamente.
+
+Tecnologias Utilizadas
+HTML5
+
+CSS3
+
+JavaScript
+
+Recursos Utilizados
 Imagens:
 
 mario-bg.jpg: Plano de fundo temático do Mario.
@@ -53,11 +51,37 @@ monty-mole.png: Imagem da toupeira.
 
 piranha-plant.png: Imagem da planta piranha.
 
-Tecnologias:
+Como Contribuir
+Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novas funcionalidades. Siga os passos abaixo:
 
-HTML5, CSS3 e JavaScript puro.
+Faça um fork deste repositório.
 
-Contribuições:
-Sinta-se à vontade para contribuir com melhorias, correções de bugs ou novas funcionalidades. Abra uma issue ou envie um pull request!
+Crie uma branch para sua feature (git checkout -b feature/nova-feature).
 
-Divirta-se criando e jogando o seu próprio "Whac a Mole"!
+Faça o commit das suas alterações (git commit -m 'Adicionando nova feature').
+
+Faça o push para a branch (git push origin feature/nova-feature).
+
+Abra um Pull Request.
+
+Autor
+👤 Walney
+
+📧 Email: walneyk@hotmail.com
+
+🌐 Fork do Projeto: Meu Fork do Whac a Mole
+
+Licença
+Este projeto está licenciado sob a licença MIT. Para mais detalhes, consulte o arquivo LICENSE.
+
+Agradecimentos
+Inspirado no tutorial de Kenny Yip.
+
+Imagens e tema baseados no universo do Mario.
+
+Divirta-se criando e jogando o seu próprio Whac a Mole! 🎮
+
+Contato
+Se você tiver sugestões, dúvidas ou quiser compartilhar suas melhorias, entre em contato comigo pelo email: walneyk@hotmail.com.
+
+Espero que você goste do projeto! 😊
