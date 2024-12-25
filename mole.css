@@ -3,39 +3,83 @@ body {
     text-align: center;
     background: url("./mario-bg.jpg");
     background-size: cover;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom: 10px;
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 #board {
     width: 540px;
     height: 540px;
-    /* background-color: green; */
-
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-
     background: url("./soil.png");
     background-size: cover;
     border: 3px solid white;
     border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 #board div {
-    /* board = 540 x 540, divide into 3x3 tiles --> 180 x 180 per div */
-    width: 180px; 
+    width: 180px;
     height: 180px;
     background-image: url("./pipe.png");
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 #board div img {
-    /* all img tags inside tiles */
     width: 100px;
     height: 100px;
-
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+#board div img:hover {
+    transform: scale(1.1);
+}
+
+#restartButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #ff4757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#restartButton:hover {
+    background-color: #ff6b81;
+}
+
+#restartButton:active {
+    transform: scale(0.95);
 }
